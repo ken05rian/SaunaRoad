@@ -13,6 +13,31 @@
  *= require_tree .
  *= require_self
  */
+header {
+  height: 150px;
+  width: 100%;
+  padding: 15px 0;
+  background-color: #F1E945;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.nav-list {
+  list-style: none;
+  margin-left: 100px;
+}
+
+.nav-item {
+  list-style: none;
+  display: inline-flex;
+  margin: 0 20px;
+}
+
+
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';

@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_072215) do
+ActiveRecord::Schema.define(version: 2021_03_17_131858) do
+
+  create_table "post_images", force: :cascade do |t|
+    t.string "image_id"
+    t.text "caption"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sauna_facilities", force: :cascade do |t|
+    t.string "name"
+    t.string "image_id"
+    t.string "address"
+    t.string "telephone_number"
+    t.string "regular_holiday"
+    t.string "access"
+    t.string "business_hour"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

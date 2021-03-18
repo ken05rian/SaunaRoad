@@ -10,19 +10,40 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-    
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+              <a class="navbar-brand p-3" href="/">
+                <%= image_tag 'logo.png', class: 'logo' %>
+              </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="nav-list">
+               <% if user_signed_in? %>
+               <li class="nav-item">
+                 <%= "ようこそ、#{current_user.name}さん！" %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-dark' %>
+               </li>
+               <% else %>
+               <li class="nav-item">
+                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "施設一覧", sauna_facilities_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to "サウナ飯一覧", post_images_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+               </li>
+               <% end %>
+              </ul>
+            </div>
+        </div>
+    　</nav>
     <%= yield %>
+    </header>
   </body>
 </html>
