@@ -1,2 +1,31 @@
-<h1>SaunaFacilities#index</h1>
-<p>Find me in app/views/sauna_facilities/index.html.erb</p>
+<h4 class="list">サウナ施設一覧(全<%= @sauna_facilities.total_count %>件）</h4>
+<% @sauna_facilities.each do |sauna_facility| %>
+ <div class="container">
+   <div class="main">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="sauna-image">
+          <%= attachment_image_tag sauna_facility, :image, format: 'jpeg', fallback: "no_image.png", size: "300x200" %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="sauna-overview">
+         <div class="sauna-name">
+          <%= link_to sauna_facility_path(sauna_facility.id) do %>
+           <%= sauna_facility.name %>
+          <% end %>
+         </div>
+         <div class="sauna-access">
+           <%= sauna_facility.access %>
+         </div>
+         <div class="sauna-introduction">
+           <%= sauna_facility.introduction %>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+<% end %>
+<%= paginate @sauna_facilities %>

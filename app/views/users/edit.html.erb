@@ -1,0 +1,30 @@
+<h4 class="title">プロフィール編集</h4>
+
+<div class="container">
+  <%= form_with model:@user, local:true do |f| %>
+
+ <div class="row">
+  <div class="col-md-12">
+ <table class="table">
+  <tr>
+   <th><%= f.label :プロフィール画像　%></th>
+   <td><%= f.attachment_field :profile_image %></td>
+  </tr>
+  <tr>
+   <th><%= f.label :ユーザー名　%></th>
+   <td><%= f.text_field :name, size: "40" %></td>
+  </tr>
+  <tr>
+   <th><%= f.label :自己紹介（最大200文字） %></th>
+   <td><%= f.text_area :introduction, size: "40×100" %></td>
+  </tr>
+ </table>
+
+<div class="text-center">
+<%= f.submit '変更を保存', class: 'btn btn-success' %>
+</div>
+
+ </div>
+ </div>
+ <% end %>
+</div>

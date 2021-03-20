@@ -1,0 +1,48 @@
+<h4 class="title">施設新規登録</h4>
+
+<div class="container">
+  <%= form_with model: @sauna_facility, local:true do |f| %>
+ <div class="row justify-content-center">
+  <div class="col-7">
+   <table class="table">
+    <tr>
+     <th><%= f.label :サウナ施設画像　%></th>
+     <td><%= f.attachment_field :image %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :サウナ施設名　%></th>
+     <td><%= f.text_field :name, size: "40" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :施設紹介 %></th>
+      <td><%= f.text_area :introduction, size: "40×100" %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :住所　%></th>
+     <td><%= f.text_field :address, size: "40" %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :電話番号　%></th>
+     <td><%= f.text_field :telephone_number, size: "40"  %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :定休日 %></th>
+     <td><%= f.text_field :regular_holiday, size: "40" %></td>
+    </tr>
+    <tr>
+  　  <th><%= f.label :アクセス %></th>
+  　  <td><%= f.text_field :access, size: "40" %></td>
+    </tr>
+    <tr>
+  　  <th><%= f.label :営業時間 %></th>
+  　  <td><%= f.text_field :business_hour, size: "40" %></td>
+    </tr>
+   </table>
+
+   <div class="text-center">
+     <%= f.submit '新規登録', class: 'btn btn-success' %>
+   </div>
+  </div>
+ </div>
+ <% end %>
+</div>

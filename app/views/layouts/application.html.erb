@@ -13,30 +13,47 @@
     <header class="header">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-              <a class="navbar-brand p-3" href="/">
+              <a class="navbar-brand" href="/">
                 <%= image_tag 'logo.png', class: 'logo' %>
               </a>
+             <% if user_signed_in? %>
+              <h7 class="current-user-name">
+                 <%= "ようこそ、#{current_user.name}さん！" %>
+              </h7>
+             <% end %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="nav-list">
+              <ul class="navbar-nav ml-auto">
                <% if user_signed_in? %>
                <li class="nav-item">
-                 <%= "ようこそ、#{current_user.name}さん！" %>
+                 <i class="fas fa-user"><%= link_to "マイページ", user_path(current_user.id), style: "color:black" %></i>
                </li>
                <li class="nav-item">
-                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-dark' %>
+                 <i class="fas fa-users"><%= link_to "ユーザー一覧", users_path, style: "color:black" %></i>
+               </li>
+               <li class="nav-item">
+                 <i class="fas fa-hot-tub"><%= link_to "サウナ施設一覧", sauna_facilities_path, style: "color:black" %></i>
+               </li>
+               <li class="nav-item">
+                 <i class="fas fa-utensils"><%= link_to "サウナ飯一覧", post_images_path, style: "color:black" %></i>
+               </li>
+               <li class="nav-item">
+                 <i class="fas fa-sign-out-alt"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, style: "color:black" %></i>
                </li>
                <% else %>
                <li class="nav-item">
-                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+                 <i class="fas fa-user-plus"><%= link_to "新規登録", new_user_registration_path, style: "color:black" %></i>
                </li>
                <li class="nav-item">
-                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+                 <i class="fas fa-sign-in-alt"><%= link_to "ログイン", new_user_session_path, style: "color:black" %></i>
                </li>
                <li class="nav-item">
-                 <%= link_to "施設一覧", sauna_facilities_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+                 <i class="fas fa-hot-tub"><%= link_to "サウナ施設一覧", sauna_facilities_path, style: "color:black" %></i>
                </li>
                <li class="nav-item">
-                 <%= link_to "サウナ飯一覧", post_images_path, class: 'nav-link text-dark btn btn-outline-dark' %>
+                 <i class="fas fa-utensils"><%= link_to "サウナ飯一覧", post_images_path, style: "color:black" %></i>
                </li>
                <% end %>
               </ul>
