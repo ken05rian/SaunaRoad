@@ -1,37 +1,40 @@
 <%= render 'sauna_facilities/list' %>
+
+ <h5 class="new-review-title">口コミ投稿する</h5>
   <div class="container">
    <%= form_with model: [@sauna_facility, @review], local:true do |f| %>
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <table class="table">
           <tr>
-            <th><%= f.label :タイトル　%></th>
-            <td><%= f.text_field :title, size: "40" %></td>
+            <th width="130"><%= f.label :タイトル　%></th>
+            <td><%= f.text_field :title, size: "45" %></td>
           </tr>
           <tr>
             <th><%= f.label :評価　%></th>
-            <td></td>
+            <td><%= f.hidden_field :score, id: :review_star %></td>
+            <script>
+             $('#star').raty({
+             size     : 36,
+             starOff:  '<%= asset_path('star-off.png') %>',
+             starOn : '<%= asset_path('star-on.png') %>',
+             starHalf: '<%= asset_path('star-half.png') %>',
+             scoreName: 'review[score]',
+             half: true,
+             });
+            </script>
           </tr>
     　　　　<tr>
       　　　　<th><%= f.label :口コミ内容 %></th>
-      　　　　<td><%= f.text_area :caption,  size: "40×100" %></td>
+      　　　　<td height="200"><%= f.text_area :caption, size: "45×200", placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！' %></td>
           </tr>
        </table>
 
        <div class="text-center">
-        <%= f.submit '投稿', class: 'btn btn-success' %>
+        <%= f.submit '投稿', class: 'btn btn-success w-50' %>
        </div>
       </div>
     </div>
    <% end %>
   </div>
 
-   <%= f.hidden_field :score, id: :review_star %>
-<script>
-$('#star').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  scoreName: 'review[star]'
-});
-</script>
