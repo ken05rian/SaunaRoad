@@ -1,11 +1,11 @@
-<h4 class="list">サウナ施設一覧(全<%= @sauna_facilities.total_count %>件）</h4>
+<h4 class="sauna-list">サウナ施設一覧(全<%= @sauna_facilities.total_count %>件）</h4>
 <% @sauna_facilities.each do |sauna_facility| %>
  <div class="container">
-   <div class="main">
+   <div class="sauna-main">
     <div class="row">
       <div class="col-md-5">
         <div class="sauna-image">
-          <%= attachment_image_tag sauna_facility, :image, format: 'jpeg', fallback: "no_image.png", size: "300x200" %>
+          <%= attachment_image_tag sauna_facility, :image, format: 'jpeg', fallback: "no_image.png", size: "300x230" %>
         </div>
       </div>
       <div class="col-md-7">
@@ -19,7 +19,7 @@
            <%= sauna_facility.access %>
          </div>
          <div class="sauna-introduction">
-           <%= sauna_facility.introduction %>
+           <%= simple_format(sauna_facility.introduction) %>
          </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ class SaunaFacilitiesController < ApplicationController
   end
 
   def show
+    @sauna_facility = SaunaFacility.find(params[:id])
   end
 
   def create
@@ -45,7 +46,7 @@ class SaunaFacilitiesController < ApplicationController
  end
 
  def sauna_facility_params
-    params.require(:sauna_facility).permit(:image, :name, :address, :introduction, :telephone_number, :regular_holiday, :access, :business_hour)
+    params.require(:sauna_facility).permit(:image, :name, :address, :introduction, :telephone_number, :regular_holiday, :access, :business_hour, :latitude, :longitude)
  end
 
 end

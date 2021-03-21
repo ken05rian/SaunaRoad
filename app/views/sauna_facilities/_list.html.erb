@@ -1,0 +1,23 @@
+<div class="show-sauna-main">
+  <h4 class="show-sauna-name">
+   <%= @sauna_facility.name %>
+   </h4>
+   <div class="container">
+      <ul class="review-list">
+
+      </ul>
+      <div class="link-list">
+        <div class="link-item">
+          <i class="fas fa-home"><%= link_to "トップ", sauna_facility_path(@sauna_facility.id), style: "color:black" %></i>
+        </div>
+        <div class="link-item">
+          <i class="fas fa-comment-dots"><%= link_to "口コミ", sauna_facility_reviews_path(@sauna_facility.id), style: "color:black" %></i>
+        </div>
+        <div class="link-item">
+          <i class="fas fa-utensils"><%= link_to "サウナ飯", post_images_path, style: "color:black" %></i>
+        </div>
+        <div class="link-item">
+          <i class="fas fa-map-marker-alt">地図</i>
+        </div>
+        <hr class="border">
+    </div>
