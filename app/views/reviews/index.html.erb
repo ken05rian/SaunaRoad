@@ -1,2 +1,16 @@
-<h1>Reviews#index</h1>
-<p>Find me in app/views/reviews/index.html.erb</p>
+<%= render 'sauna_facilities/list' %>
+ <div class=container>
+   <% @reviews.each do |review| %>
+       <div class="review-user">
+        <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50" %>
+        <%= review.user.name %>さんの口コミ
+       </div>
+       <div class="review-title">
+         <%= review.title %>
+       </div>
+       <div class="review-caption">
+         <%= review.caption %>
+       </div>
+
+  <% end %>
+</div>

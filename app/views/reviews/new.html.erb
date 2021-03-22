@@ -12,17 +12,10 @@
           </tr>
           <tr>
             <th><%= f.label :評価　%></th>
-            <td><%= f.hidden_field :score, id: :review_star %></td>
-            <script>
-             $('#star').raty({
-             size     : 36,
-             starOff:  '<%= asset_path('star-off.png') %>',
-             starOn : '<%= asset_path('star-on.png') %>',
-             starHalf: '<%= asset_path('star-half.png') %>',
-             scoreName: 'review[score]',
-             half: true,
-             });
-            </script>
+            <td><div class="new-star" id="star">
+                 <%= f.hidden_field :score, id: :review_star %>
+                </div>
+            </td>
           </tr>
     　　　　<tr>
       　　　　<th><%= f.label :口コミ内容 %></th>
@@ -38,3 +31,16 @@
    <% end %>
   </div>
 
+
+            <script>
+             $(function(){
+             $('#star').raty({
+             size     : 36,
+             starOff:  '<%= asset_path('star-off.png') %>',
+             starOn : '<%= asset_path('star-on.png') %>',
+             starHalf: '<%= asset_path('star-half.png') %>',
+             scoreName: 'review[score]',
+             half: true,
+             });
+             });
+            </script>
