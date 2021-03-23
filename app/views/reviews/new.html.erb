@@ -1,6 +1,12 @@
 <%= render 'sauna_facilities/list' %>
 
  <h5 class="new-review-title">口コミ投稿する</h5>
+ <% if @review.errors.any? %>
+  <%= @review.errors.count %>件のエラーが発生しました
+  <% @review.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
   <div class="container">
    <%= form_with model: [@sauna_facility, @review], local:true do |f| %>
     <div class="row justify-content-center">
@@ -32,15 +38,15 @@
   </div>
 
 
-            <script>
-             $(function(){
-             $('#star').raty({
-             size     : 36,
-             starOff:  '<%= asset_path('star-off.png') %>',
-             starOn : '<%= asset_path('star-on.png') %>',
-             starHalf: '<%= asset_path('star-half.png') %>',
-             scoreName: 'review[score]',
-             half: true,
-             });
-             });
-            </script>
+<script>
+  $(function(){
+  $('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[score]',
+  half: true,
+  });
+  });
+</script>

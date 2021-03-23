@@ -1,16 +1,40 @@
 <%= render 'sauna_facilities/list' %>
  <div class=container>
    <% @reviews.each do |review| %>
+    <div class="row">
+      <div class="col-md-8">
        <div class="review-user">
-        <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50" %>
+        <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50", class: "icon"  %>
         <%= review.user.name %>さんの口コミ
        </div>
-       <div class="review-title">
+       <div class="relative-review-score">
+         <span>評価：</span>
+         <span id="star-score-<%= review.id %>"></span>
+         <script>
+          $(function(){
+          $('#star-score-<%= review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          half: true,
+          readOnly: true,
+          score: <%= review.score %>,
+          });
+          });
+         </script>
+         <%= review.score %></br>
+
+       <h5 class="review-title">
          <%= review.title %>
-       </div>
+       </h5>
        <div class="review-caption">
          <%= review.caption %>
        </div>
-
+         <%= review.created_at.to_s(:datetime_jp) %>
+      </div>
+    </div>
   <% end %>
 </div>
+

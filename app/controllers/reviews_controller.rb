@@ -11,6 +11,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.user_id = current_user.id
+    @review.sauna_facility_id = params[:sauna_facility_id]
     @review.save!
     redirect_to sauna_facility_reviews_path(params[:sauna_facility_id])
 
