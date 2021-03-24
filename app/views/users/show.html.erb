@@ -1,7 +1,26 @@
-<div class="current">
-   <% if @user.id == current_user.id %>
-    <%= link_to edit_user_path(@user), class: 'btn btn-secondary  btn-block' do %>
+<% if flash[:success] %>
+  <div class="alert alert-success">
+   <%= flash[:success]%>
+  </div>
+<% end %>
+<h4 class="title-profile">プロフィール</h4>
+
+ <div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="profile-image">
+      <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "100x100", class: "icon" %>
+      </div>
+      <%= render "relationships/follow_button", user: @user, class: "follow-button" %>
+    </div>
+
+
+   <div class="current">
+    <% if @user.id == current_user.id %>
+    <%= link_to edit_user_path(@user), class: 'btn btn-secondary' do %>
     <i class="fas fa-user-cog"></i>
     <% end %>
-   <% end %>
+    <% end %>
   </div>
+  </div>
+ </div>

@@ -1,2 +1,28 @@
-<h1>PostImages#new</h1>
-<p>Find me in app/views/post_images/new.html.erb</p>
+<h4 class="title">サウナ飯投稿</h4>
+
+<div class="container">
+  <%= form_with model: @post_image, local:true do |f| %>
+ <div class="row justify-content-center">
+  <div class="col-md-7">
+   <table class="table">
+    <tr>
+     <th><%= f.label :投稿写真　%></th>
+     <td><%= f.attachment_field :image %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :サウナ施設名　%></th>
+     <td><%= f.collection_select :sauna_facility_id, SaunaFacility.all, :id, :name, size: "50"  %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :説明 %></th>
+      <td><%= f.text_area :caption, size: "40×100" %></td>
+    </tr>
+   </table>
+
+   <div class="text-center">
+     <%= f.submit '投稿', class: 'btn btn-primary w-50' %>
+   </div>
+  </div>
+ </div>
+ <% end %>
+</div>

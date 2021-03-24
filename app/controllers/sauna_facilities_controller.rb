@@ -6,11 +6,12 @@ class SaunaFacilitiesController < ApplicationController
   end
 
   def index
-    @sauna_facilities = SaunaFacility.page(params[:page])
+    @sauna_facilities = SaunaFacility.all.page(params[:page]).per(5)
   end
 
   def show
     @sauna_facility = SaunaFacility.find(params[:id])
+    @reviews = Review.all.page(params[:page]).per(1)
   end
 
   def create
@@ -36,6 +37,9 @@ class SaunaFacilitiesController < ApplicationController
     redirect_to sauna_facilities_path
   end
 
+  def map
+    @sauna_facility = SaunaFacility.find(params[:id])
+  end
 
   private
 

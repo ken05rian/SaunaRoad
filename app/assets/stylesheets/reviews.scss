@@ -1,7 +1,7 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.new-review-title {
+.title-new-review {
   text-align: center;
   padding-top: 20px;
 }
@@ -16,9 +16,11 @@
 
 .review-user {
   background-color: #E0FFFF;
+  border-top: solid 1px #dee2e6;
 }
 .relative-review-score{
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .review-title {
@@ -26,3 +28,10 @@
   border-bottom: 1px dotted ;
   display: inline-block;
 }
+
+.review-button {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+

@@ -1,14 +1,18 @@
 <%= render 'sauna_facilities/list' %>
  <div class=container>
-   <% @reviews.each do |review| %>
+   <div class="review-button">
+   <%= link_to "口コミを投稿する", new_sauna_facility_review_path(@sauna_facility.id), class: 'btn btn-info'  %>
+   </div>
+   <h5>全<%= @reviews.count %>件</h5>
     <div class="row">
+      <% @reviews.each do |review| %>
       <div class="col-md-8">
+
        <div class="review-user">
         <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50", class: "icon"  %>
-        <%= review.user.name %>さんの口コミ
+        <%= link_to review.user.name, user_path(review.user.id) %>さんの口コミ
        </div>
        <div class="relative-review-score">
-         <span>評価：</span>
          <span id="star-score-<%= review.id %>"></span>
          <script>
           $(function(){
@@ -26,15 +30,16 @@
          </script>
          <%= review.score %></br>
 
-       <h5 class="review-title">
-         <%= review.title %>
-       </h5>
-       <div class="review-caption">
-         <%= review.caption %>
-       </div>
+         <h5 class="review-title">
+          <%= review.title %>
+         </h5>
+         <div class="review-caption">
+          <%= review.caption %>
+         </div>
          <%= review.created_at.to_s(:datetime_jp) %>
-      </div>
+       </div>
     </div>
-  <% end %>
+
+   <% end %>
 </div>
 

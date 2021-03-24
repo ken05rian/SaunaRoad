@@ -4,26 +4,29 @@
    </h4>
    <div class="container">
       <ul class="review-list">
+        
       </ul>
       <nav class="nav-list">
         <ul class="link-list">
         <li class="link-item">
           <%= link_to(sauna_facility_path(@sauna_facility.id), style: "color:black") do %>
-            <p><i class="fas fa-home">トップ</i></p>
+            <div class="link-name"><i class="fas fa-home">トップ</i></div>
           <% end %>
         </li>
         <li class="link-item">
           <%= link_to(sauna_facility_reviews_path(@sauna_facility.id), style: "color:black") do %>
-           <p><i class="fas fa-comment-dots">口コミ</i></p>
+           <div><i class="fas fa-comment-dots">口コミ</i></div>
           <% end %>
         </li>
         <li class="link-item">
           <%= link_to(post_images_path, style: "color:black") do %>
-           <p><i class="fas fa-utensils">サウナ飯</i></p>
+           <div><i class="fas fa-utensils">サウナ飯</i></div>
           <% end %>
         </li>
         <li class="link-item">
-          <p><i class="fas fa-map-marker-alt">地図</i></p>
+          <%= link_to(sauna_facility_path(@sauna_facility.id), style: "color:black") do %>
+          <div><i class="fas fa-map-marker-alt">地図</i></div>
+          <% end %>
         </li>
         </ul>
       </nav>

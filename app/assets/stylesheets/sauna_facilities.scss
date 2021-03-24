@@ -10,7 +10,7 @@
   font-size: 23px;
 }
 
-.sauna-list {
+.title-sauna-list {
   padding-top: 50px;
   padding-left: 100px;
 }
@@ -25,13 +25,12 @@
 }
 
 .link-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  list-style: none;
   padding: 1.5em 2.4em;
   background-color: #FFFF88;
   border: solid 2px;
 }
+
 
 .link-list {
   display: flex;
@@ -39,14 +38,16 @@
   align-items: center;
   padding: 0;
   border-bottom: solid 1px #dee2e6 ;
-  border-bottom-width: 100%;
 }
 
 .show-sauna-image {
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .title-map {
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -55,13 +56,13 @@
   padding-bottom: 20px;
 }
 
-.sauna-table th{
+
+.sauna-information-table th{
   padding-left: 10px;
-  background-color: #FFFF88;
   border: solid 2px;
 }
 
-.sauna-table td{
+.sauna-information-table td{
   padding-left: 10px;
   border: solid 2px;
 }

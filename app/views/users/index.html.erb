@@ -22,7 +22,7 @@
         <% @users.each do |user| %>
         <tr>
           <td width="300"><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
-          　　<%= user.name %></td>
+          　　<%=link_to user.name,user_path(user.id) %></td>
           <td width="600"><%=user.introduction %></td>
           <td width=" 140"></td>
           <td><%= render "relationships/follow_button", user: user, class: "follow-button" %></td>

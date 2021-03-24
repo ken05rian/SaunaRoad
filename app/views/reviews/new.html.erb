@@ -1,6 +1,6 @@
 <%= render 'sauna_facilities/list' %>
 
- <h5 class="new-review-title">口コミ投稿する</h5>
+ <h4 class="title-new-review">口コミ投稿</h4>
  <% if @review.errors.any? %>
   <%= @review.errors.count %>件のエラーが発生しました
   <% @review.errors.full_messages.each do |message| %>
