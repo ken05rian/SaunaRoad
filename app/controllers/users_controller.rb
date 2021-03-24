@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @follows = Relationship.where(follow_id: @user.id)
+    @follow_users = User.find(@follows.pluck(:user_id))
+    @followers = Relationship.where(user_id: @user.id)
+    @follower_users = User.find(@followers.pluck(:follow_id))
   end
 
   def edit
@@ -20,13 +24,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "You have updated user successfully."
+      flash[:success] = "プロフィールを更新しました"
       redirect_to user_path(@user.id)
     else
       render :edit
     end
   end
-  
+
   def following
   end
 
@@ -39,5 +43,4 @@ class UsersController < ApplicationController
    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 end
-  
-  
+

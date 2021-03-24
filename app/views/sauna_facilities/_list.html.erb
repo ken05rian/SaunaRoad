@@ -4,7 +4,8 @@
    </h4>
    <div class="container">
       <ul class="review-list">
-        
+        <span id="star-score-<%= @sauna_facility.id %>"></span>
+         <%= @review_average %>
       </ul>
       <nav class="nav-list">
         <ul class="link-list">
@@ -24,7 +25,7 @@
           <% end %>
         </li>
         <li class="link-item">
-          <%= link_to(sauna_facility_path(@sauna_facility.id), style: "color:black") do %>
+          <%= link_to(map_path(id: @sauna_facility.id), style: "color:black") do %>
           <div><i class="fas fa-map-marker-alt">地図</i></div>
           <% end %>
         </li>
@@ -32,3 +33,18 @@
       </nav>
     </div>
   </div>
+
+<script>
+          $(function(){
+          $('#star-score-<%= @sauna_facility.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          half: true,
+          readOnly: true,
+          score: <%= @review_average %>,
+          });
+          });
+         </script>

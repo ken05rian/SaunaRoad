@@ -12,6 +12,7 @@
       <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "100x100", class: "icon" %>
       </div>
       <%= render "relationships/follow_button", user: @user, class: "follow-button" %>
+      <%= render 'users/stats' %>
     </div>
 
 

@@ -11,7 +11,19 @@ class SaunaFacilitiesController < ApplicationController
 
   def show
     @sauna_facility = SaunaFacility.find(params[:id])
-    @reviews = Review.all.page(params[:page]).per(1)
+    @reviews = SaunaFacility.find(params[:id]).reviews.limit(1).order('Reviews.created_at DESC')
+    review_average = SaunaFacility.find(params[:id]).reviews.average('score')
+    if !review_average.nil?
+    @review_average =  if review_average > review_average.floor + 0.6
+                         review_average.floor + 1
+                       elsif review_average < review_average.floor + 0.4
+                         review_average.floor
+                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
+                         review_average.floor + 0.5
+                       else
+                         review_average
+                       end
+    end
   end
 
   def create

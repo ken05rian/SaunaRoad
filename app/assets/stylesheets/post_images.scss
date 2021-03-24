@@ -1,3 +1,31 @@
 // Place all the styles related to the PostImages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-image-user {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.post-image-information {
+ float: left;
+ margin-bottom: 20px;
+ border: solid 3px #FFFF88;
+}
+
+.title-post-image-list{
+  padding-top: 50px;
+  padding-left: 100px;
+}
+.post-image-list{
+  display: flex;
+  padding-bottom: 30px;
+}
+.new-post-image-button{
+  padding-top: 45px;
+  padding-left: 20px;
+}
+
+.sauna-paginate {
+  padding-bottom: 70px;
+}

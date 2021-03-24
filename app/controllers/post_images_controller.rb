@@ -11,7 +11,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.all.page(params[:page]).per(8)
   end
 
   def show
@@ -23,7 +23,7 @@ class PostImagesController < ApplicationController
  private
 
   def post_image_params
-    params.require(:post_image).permit(:image, :caption)
+    params.require(:post_image).permit(:image, :caption, :user_id, :sauna_facility_id)
   end
 
 
