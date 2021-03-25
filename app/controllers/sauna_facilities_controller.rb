@@ -11,9 +11,9 @@ class SaunaFacilitiesController < ApplicationController
 
   def show
     @sauna_facility = SaunaFacility.find(params[:id])
-    @post_images = SaunaFacility.find(params[:id]).post_images.limit(4).order('PostImages.created_at DESC')
-    @reviews = SaunaFacility.find(params[:id]).reviews.limit(1).order('Reviews.created_at DESC')
-    review_average = SaunaFacility.find(params[:id]).reviews.average('score')
+    @post_images = @sauna_facility.post_images
+    @reviews = @sauna_facility.reviews
+    review_average = @reviews.average('score')
     if !review_average.nil?
     @review_average =  if review_average > review_average.floor + 0.6
                          review_average.floor + 1
@@ -52,7 +52,22 @@ class SaunaFacilitiesController < ApplicationController
 
   def map
     @sauna_facility = SaunaFacility.find(params[:id])
+    @reviews = @sauna_facility.reviews
+    review_average = @sauna_facility.reviews.average('score')
+    if !review_average.nil?
+    @review_average =  if review_average > review_average.floor + 0.6
+                         review_average.floor + 1
+                       elsif review_average < review_average.floor + 0.4
+                         review_average.floor
+                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
+                         review_average.floor + 0.5
+                       else
+                         review_average
+                       end
+    end
   end
+
+
 
   private
 

@@ -1,33 +1,69 @@
-  <% if @post_image.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-        ♥<%= @post_image.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-        ♡<%= @post_image.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-
-
-<div class="comments">
-<p>コメント件数：<%= @post_image.post_comments.count %></p>
-<% @post_image.post_comments.each do |post_comment| %>
-  <%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-  <% if post_comment.user == current_user %>
-  <div class="comment-delete">
-    <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
+ <div class="container">
+   <h4 class="title">サウナ飯</h4>
+   <div class="row">
+     <div class="col-md-5">
+       <div class="post-image">
+         <%= attachment_image_tag @post_image, :image, format: 'jpeg', size: "300x300" %>
+       </div>
+       <div class="show-post-image-user">
+         <%= attachment_image_tag @post_image.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
+         <div class="show-post-user-name">
+          <%= link_to @post_image.user.name, user_path(@post_image.user) %>
+          </div>
+        <div class="favorite">
+         <div class="show-favorite-count">
+           <font color="gray">いいね！：<%= @post_image.favorites.count %>件</font>
+         </div>
+         <% if @post_image.favorited_by?(current_user) %>
+          <div class="show-favorite-mark">
+            <%= link_to post_image_favorites_path(@post_image), method: :delete, style: "color:red" do %>
+             <i class="fas fa-heart"></i>
+            <% end %>
+          </div>
+         <% else %>
+          <div class="show-favorite-mark">
+            <%= link_to post_image_favorites_path(@post_image), method: :post, style: "color:gray" do %>
+             <i class="far fa-heart"></i>
+            <% end %>
+          </div>
+         <% end %>
+       </div>
+       </div>
+     </div>
+     <div class="col-md-7">
+      <div class="visit-sauna">
+       訪れた施設：<%= link_to @post_image.sauna_facility.name, sauna_facility_path(@post_image.sauna_facility) %>
+       </div>
+       <div class="show-comments">
+        <font color="gray">コメント：<%= @post_image.post_comments.count %>件</font></br>
+        <% @post_image.post_comments.each do |post_comment| %>
+         <div class="comment-user">
+          <%= attachment_image_tag post_comment.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "30x30", class: "icon"  %>
+          <%= link_to post_comment.user.name, user_path(post_comment.user.id) %>さん
+         </div>
+         <div class="my-comment">
+          <%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+           <div class="comment-delete">
+            <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-sm  btn-danger" %></br>
+           </div>
+          <% end %>
+         </div>
+          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        <% end %>
+       </div>
+      <div class="new-comment">
+        <% unless user_signed_in?  %>
+        <% elsif @post_image.user == current_user %>
+        <% else %>
+         <%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
+           <%= f.text_area :comment, placeholder: "コメント" %></br>
+           <%= f.submit "送信する" %>
+         <% end %>
+        <% end %>
+      </div>
+     </div>
   </div>
-  <% end %>
-<% end %>
 </div>
-<div class="new-comment">
-<%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
-</div>
+
+

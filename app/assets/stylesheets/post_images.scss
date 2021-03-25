@@ -10,7 +10,7 @@
 .post-image-information {
  float: left;
  margin-bottom: 20px;
- border: solid 3px #FFFF88;
+ border: solid 5px #FFFF88;
 }
 
 .title-post-image-list{
@@ -23,6 +23,7 @@
 }
 .new-post-image-button{
   padding-left: 20px;
+  padding-top: 45px;
 }
 
 .sauna-paginate {
@@ -43,4 +44,65 @@
 
 .user-post-image {
   margin-bottom: 20px;
+}
+
+.favorite-comment {
+  display: flex;
+}
+
+.favorite {
+  display: flex;
+}
+
+.favorite-mark {
+  padding-left: 10px;
+}
+
+.comment {
+  display: flex;
+  padding-left: 30px;
+}
+
+.comment-mark {
+  padding-left: 10px;
+}
+
+.show-post-image-user{
+  display: flex;
+}
+
+.show-post-user-name {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.show-favorite-count{
+  padding-top: 20px;
+  padding-left: 30px;
+  margin-right: 20px;
+}
+
+.show-favorite-mark{
+  padding-top: 20px;
+}
+
+.visit-sauna {
+  padding-bottom: 20px;
+}
+
+.comment-user {
+  background-color: #E0FFFF;
+  border-top: solid 1px #dee2e6;
+}
+
+.my-comment {
+  display: flex;
+}
+
+.comment-delete {
+  padding-left: 20px;
+}
+
+.new-comment {
+  padding-top: 40px;
 }

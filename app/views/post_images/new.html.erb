@@ -1,10 +1,12 @@
-<h4 class="title">サウナ飯投稿</h4>
 <% if @post_image.errors.any? %>
-  <%= @post_image.errors.count %>件のエラーが発生しました
+ <div class="alert alert-danger">
   <% @post_image.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
+ </div>
 <% end %>
+
+<h4 class="title-center">サウナ飯投稿</h4>
 
 <div class="container">
   <%= form_with model: @post_image, local:true do |f| %>
@@ -21,7 +23,7 @@
     </tr>
     <tr>
       <th><%= f.label :説明 %></th>
-      <td><%= f.text_area :caption, size: "40×100" %></td>
+      <td><%= f.text_area :caption, rows: "10", cols: "40" %></td>
     </tr>
    </table>
 

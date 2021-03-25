@@ -6,12 +6,12 @@
 
 <div class="container">
   <h4 class="title-center">ユーザー一覧</h4>
-  <div class="row justify-content-center">
-    <div class="col-md-12">
+  <div class="row">
+    <div class="col-lg-12">
     <table class="table">
       <thead>
         <tr>
-          <th>ユーザー名</th>
+          <th style="text-align: center;">ユーザー名</th>
           <th>自己紹介文</th>
           <th>投稿数</th>
           <th></th>
@@ -21,10 +21,10 @@
       <tbody>
         <% @users.each do |user| %>
         <tr>
-          <td width="300"><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
+          <td width="350"><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
           　　<%=link_to user.name,user_path(user.id) %></td>
-          <td width="600"><%=user.introduction %></td>
-          <td width=" 140"></td>
+          <td width="500"><%= user.introduction %></td>
+          <td width="80" style="text-align: center;" ><%= user.post_images.count %></td>
           <td><%= render "relationships/follow_button", user: user, class: "follow-button" %></td>
         </tr>
         <% end %>

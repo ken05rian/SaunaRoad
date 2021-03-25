@@ -23,6 +23,14 @@
          <div class="sauna-introduction">
            <%= simple_format(sauna_facility.introduction) %>
          </div>
+         <div class="review-list">
+          <span id="star-score-<%= sauna_facility.id %>"></span>
+         <%= sauna_facility.review_average %>
+         <div class="review-mark">
+          <%= link_to(sauna_facility_reviews_path(sauna_facility.id))  do %>
+           <i class="fas fa-comment-dots"><%= sauna_facility.reviews.count %></i>
+          <% end %>
+         </div>
         </div>
       </div>
     </div>
@@ -33,3 +41,18 @@
 <div class="sauna-paginate">
  <%= paginate @sauna_facilities %>
 </div>
+
+         <script>
+          $(function(){
+          $('#star-score-<%= @sauna_facility.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          half: true,
+          readOnly: true,
+          score: <%= @review_average %>,
+          });
+          });
+         </script>

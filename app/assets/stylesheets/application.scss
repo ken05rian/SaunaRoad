@@ -24,7 +24,6 @@ header {
   height: 126px;
   width: 100%;
   background-color: #F1E945;
-  margin-bottom: 50px;
 }
 
 
@@ -73,10 +72,12 @@ footer {
 .title-center {
   text-align: center;
   padding-bottom: 30px;
+  padding-top: 50px;
 }
 
 .title {
   padding-bottom: 30px;
+  padding-top: 50px;
 }
 @import "bootstrap";
 @import 'font-awesome-sprockets';

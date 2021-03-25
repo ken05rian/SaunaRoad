@@ -34,9 +34,17 @@ class UsersController < ApplicationController
   end
 
   def following
+    @user = User.find(params[:id])
+    @follows = Relationship.where(follow_id: @user.id)
+    @follow_users = User.find(@follows.pluck(:user_id))
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def followers
+    @user = User.find(params[:id])
+    @followers = Relationship.where(user_id: @user.id)
+    @follower_users = User.find(@followers.pluck(:follow_id))
+    @users = User.all.page(params[:page]).per(10)
   end
 
   private

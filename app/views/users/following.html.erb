@@ -1,2 +1,32 @@
-<h1>Users#following</h1>
-<p>Find me in app/views/users/following.html.erb</p>
+<div class="container">
+  <h4 class="title-center">フォロ一覧</h4>
+  <div class="row">
+    <div class="col-lg-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="text-align: center;">ユーザー名</th>
+          <th>自己紹介文</th>
+          <th>投稿数</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @follow_users.each do |follow_user| %>
+        <tr>
+          <td width="350"><%= attachment_image_tag follow_user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
+          　　<%=link_to follow_user.name,user_path(follow_user.id) %></td>
+          <td width="500"><%= follow_user.introduction %></td>
+          <td width="80" style="text-align: center;" ><%= follow_user.post_images.count %></td>
+          <td><%#= render "relationships/follow_button", follow_user: follow_user, class: "follow-button" %></td>
+        </tr>
+        <% end %>
+
+      </tbody>
+
+    </table>
+    </div>
+  </div>
+</div>
+<%= paginate @users %>

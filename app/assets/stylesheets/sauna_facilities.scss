@@ -1,6 +1,14 @@
 // Place all the styles related to the sauna_facilities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.title-sauna-list {
+  padding-top: 50px;
+}
+
+.show-sauna-name {
+  padding-top: 50px;
+  padding-bottom: 10px;
+}
 .sauna-main {
   padding-top: 30px;
   padding-bottom: 50px;
@@ -11,6 +19,14 @@
   font-size: 23px;
 }
 
+.review-list{
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.review-mark {
+  padding-left: 20px;
+}
 
 .sauna-access {
   padding-bottom: 20px;
@@ -37,7 +53,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 .title-map {
   padding-top: 20px;
   padding-bottom: 20px;
