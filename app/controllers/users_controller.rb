@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @follow_users = User.find(@follows.pluck(:user_id))
     @followers = Relationship.where(user_id: @user.id)
     @follower_users = User.find(@followers.pluck(:follow_id))
+    @post_images = @user.post_images
   end
 
   def edit
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
       flash[:success] = "プロフィールを更新しました"
       redirect_to user_path(@user.id)
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end

@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+
+  before_action :authenticate_user!,except: [:index]
+
   def index
     @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
     @reviews = Review.all
@@ -13,9 +16,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.sauna_facility_id = params[:sauna_facility_id]
-    @review.save!
-    redirect_to sauna_facility_reviews_path(params[:sauna_facility_id])
-
+    if @review.save
+      redirect_to sauna_facility_reviews_path(params[:sauna_facility_id])
+    else
+      render :new
+    end
   end
 
   private

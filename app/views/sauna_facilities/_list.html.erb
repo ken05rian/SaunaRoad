@@ -1,8 +1,6 @@
 <div class="show-sauna-main">
-  <h4 class="show-sauna-name">
-   <%= @sauna_facility.name %>
-   </h4>
    <div class="container">
+     <h4 class="show-sauna-name"><%= @sauna_facility.name %></h4>
       <ul class="review-list">
         <span id="star-score-<%= @sauna_facility.id %>"></span>
          <%= @review_average %>
@@ -20,7 +18,7 @@
           <% end %>
         </li>
         <li class="link-item">
-          <%= link_to(post_images_path, style: "color:black") do %>
+          <%= link_to(sauna_facility_foods_path(@sauna_facility.id), style: "color:black") do %>
            <div><i class="fas fa-utensils">サウナ飯</i></div>
           <% end %>
         </li>

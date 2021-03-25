@@ -3,25 +3,47 @@
    <%= flash[:success]%>
   </div>
 <% end %>
-<h4 class="title-profile">プロフィール</h4>
 
  <div class="container">
+  <h4 class="title">プロフィール</h4>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <div class="profile-image">
-      <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "100x100", class: "icon" %>
+      <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "120x120", class: "icon" %>
       </div>
-      <%= render "relationships/follow_button", user: @user, class: "follow-button" %>
       <%= render 'users/stats' %>
+      <div class="follow-button">
+      <%= render "relationships/follow_button", user: @user %>
+      </div>
+      <div class="edit-profile">
+        <% if @user.id == current_user.id %>
+         <%= link_to edit_user_path(@user), class: 'btn btn-secondary w-50' do %>
+           <i class="fas fa-user-cog"></i>
+         <% end %>
+        <% end %>
+      </div>
     </div>
-
-
-   <div class="current">
-    <% if @user.id == current_user.id %>
-    <%= link_to edit_user_path(@user), class: 'btn btn-secondary' do %>
-    <i class="fas fa-user-cog"></i>
-    <% end %>
-    <% end %>
+    <div class="col-md-5">
+     <div class="profile-name">
+      <h5>ユーザー名</h5>
+      <%= @user.name %>
+     </div>
+     <div class="profile-introduction">
+      <h5>自己紹介文</h5>
+      <%= @user.introduction %>
+     </div>
+    </div>
   </div>
+  <hr class="border">
+ </div>
+ <div class="container">
+  <div class="row">
+   <% @post_images.each do |post_image| %>
+    <div class="col-md-3">
+     <div class="user-post-image">
+      <%= attachment_image_tag post_image, :image, format: 'jpeg',size: "250x250" %>
+     </div>
+    </div>
+   <% end %>
   </div>
  </div>

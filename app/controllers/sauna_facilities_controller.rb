@@ -11,6 +11,7 @@ class SaunaFacilitiesController < ApplicationController
 
   def show
     @sauna_facility = SaunaFacility.find(params[:id])
+    @post_images = SaunaFacility.find(params[:id]).post_images.limit(4).order('PostImages.created_at DESC')
     @reviews = SaunaFacility.find(params[:id]).reviews.limit(1).order('Reviews.created_at DESC')
     review_average = SaunaFacility.find(params[:id]).reviews.average('score')
     if !review_average.nil?
