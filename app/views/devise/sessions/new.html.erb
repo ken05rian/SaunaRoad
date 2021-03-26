@@ -1,6 +1,14 @@
-<h4 class="sign-in-title">ログイン</h4>
+<% if @user.errors.any? %>
+ <div class="alert alert-danger">
+  <%= @user.errors.count %>件のエラーが発生しました</br>
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %></br>
+  <% end %>
+ <% end %>
+</div>
 
 <div class="container">
+ <h4 class="title-center">ログイン</h4>
   <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
  <div class="row justify-content-center">
   <div class="col-md-4">
@@ -23,7 +31,7 @@
     <% end %>
 
    <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary w-100" %>
+    <%= f.submit "ログイン", class: "btn btn-primary w-100", style: "margin-bottom: 30px;" %>
    </div>
    <% end %>
 
@@ -33,7 +41,7 @@
  </div>
 </div>
 
-<h6 class="sign-up">
+<h6 class="text-center">
     新規登録は<%= link_to "こちら", new_user_registration_path %>へ
 </h6>
 

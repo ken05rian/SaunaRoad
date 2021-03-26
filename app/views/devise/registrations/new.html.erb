@@ -1,6 +1,4 @@
-<h4 class="sign-up-title">新規登録</h4>
-
- <% if @user.errors.any? %>
+<% if @user.errors.any? %>
  <div class="alert alert-danger">
   <%= @user.errors.count %>件のエラーが発生しました</br>
   <% @user.errors.full_messages.each do |message| %>
@@ -8,8 +6,8 @@
   <% end %>
  <% end %>
 </div>
-
-<div class="container">
+<div class="container sign-up-footer">
+  <h4 class="title-center">新規登録</h4>
   <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user',local:true do |f| %>
 　<div class="row justify-content-center">
    <div class="col-md-4">

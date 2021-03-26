@@ -1,5 +1,10 @@
- <div class="container">
-   <h4 class="title">サウナ飯</h4>
+ <div class="container show-post-image-footer">
+   <div class ="show-post-image">
+     <h4 class="title">サウナ飯</h4>
+     <div class="post-image-button">
+      <%= link_to "一覧へ戻る", post_images_path, class: "btn btn-secondary" %>
+     </div>
+   </div>
    <div class="row">
      <div class="col-md-5">
        <div class="post-image">
@@ -53,14 +58,10 @@
         <% end %>
        </div>
       <div class="new-comment">
-        <% unless user_signed_in?  %>
-        <% elsif @post_image.user == current_user %>
-        <% else %>
          <%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
-           <%= f.text_area :comment, placeholder: "コメント" %></br>
+           <%= f.text_area :comment, placeholder: "コメント", rows: "3", cols: "50" %></br>
            <%= f.submit "送信する" %>
          <% end %>
-        <% end %>
       </div>
      </div>
   </div>

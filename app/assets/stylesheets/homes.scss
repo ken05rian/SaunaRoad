@@ -1,7 +1,45 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.top_image {
+.top-image {
   width: 100%;
   height: 500px;
+}
+
+.top-image-main {
+  position: relative;
+}
+
+.top-text-first {
+  position: absolute;
+  top: 65%;
+  left: 6%;
+  color: white;
+}
+
+.top-text-second {
+  position: absolute;
+  top: 73%;
+  left: 6%;
+  color: white;
+}
+
+.top-text-third {
+  position: absolute;
+  top: 81%;
+  left: 6%;
+  color: white;
+}
+.top-text-fourth{
+  position: absolute;
+  top: 91%;
+  left: 6%;
+  color: white;
+}
+
+.top-text-main {
+  position: absolute;
+  top: 33%;
+  left: 42%;
+  color: white;
 }

@@ -4,14 +4,16 @@
 
 .post-image-user {
   padding-top: 5px;
+  border-bottom: solid 2px gray;
   padding-bottom: 10px;
 }
 
 .post-image-information {
  float: left;
- margin-bottom: 20px;
+ margin-bottom: 30px;
  border: solid 5px #FFFF88;
 }
+
 
 .title-post-image-list{
   padding-top: 50px;
@@ -26,6 +28,14 @@
   padding-top: 45px;
 }
 
+.show-post-image{
+  display: flex;
+}
+
+.post-image-button{
+  padding-left: 20px;
+  padding-top: 45px;
+}
 .sauna-paginate {
   padding-bottom: 70px;
 }
@@ -105,4 +115,12 @@
 
 .new-comment {
   padding-top: 40px;
+}
+
+.index-post-image-footer {
+  padding-bottom: 50px;
+}
+
+.show-post-image-footer{
+  padding-bottom: 70px;
 }
