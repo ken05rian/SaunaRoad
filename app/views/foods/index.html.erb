@@ -1,7 +1,8 @@
 <%= render 'sauna_facilities/list' %>
 
 <div class="container index-post-image-footer">
-   <div class="row">
+  <div class="row">
+   <% unless @post_images.blank? %>
     <% @post_images.each do |post_image| %>
     <div class="col-lg-4 col-sm-12 col-md-6">
       <div class="post-image-information">
@@ -52,11 +53,12 @@
         <%= post_image.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
        </div>
       </div>
-    </div>
+     </div>
+    <% end %>
+    <div class="post-image-paginate">
+   <%= paginate @post_images %>
+   </div>
    <% end %>
   </div>
 </div>
 
-<div class="post-image-paginate">
-  <%= paginate @post_images %>
-</div>

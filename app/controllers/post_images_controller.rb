@@ -31,8 +31,8 @@ class PostImagesController < ApplicationController
   def destroy
     @post_image = PostImage.find(params[:id])
     if @post_image.destroy
-      flash[:notice] = "投稿を削除しました"
-      redirect_to post_image_path(@post_image)
+      flash[:success] = "投稿を削除しました"
+      redirect_to post_images_path
     end
   end
 

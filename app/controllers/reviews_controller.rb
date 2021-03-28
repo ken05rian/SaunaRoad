@@ -37,11 +37,12 @@ class ReviewsController < ApplicationController
 
   def destroy
     @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
-    @review =
-    if @review.destroy
+    @reviews = Review.find(params[:id])
+    if @reviews.destroy
       flash[:success] = "口コミを削除しました"
       redirect_to sauna_facility_reviews_path(@sauna_facility)
     end
+
   end
 
   private

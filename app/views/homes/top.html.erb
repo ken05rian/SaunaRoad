@@ -1,4 +1,3 @@
-
 <div class="top-image-main">
   <% if flash[:notice] %>
   <div class="alert alert-success">
@@ -29,6 +28,9 @@
   </div>
   <h4 class="show-sauna-title">今日のサウナ飯</h4>
   <div class="row">
+  <% if @post_images.count == 0 %>
+    <h5 class="no-post-image">今日の新着投稿はありません</h5>
+  <% else %>
     <% @post_images.each do |post_image| %>
     <div class="col-lg-4 col-sm-12 col-md-6">
       <div class="post-image-information">
@@ -82,7 +84,9 @@
     </div>
    <% end %>
   </div>
-  <div class="food-continued">
-     <%=link_to "続きを見る>>", post_images_path %>
-    </div>
+   <div class="food-continued">
+    <%=link_to "続きを見る>>", post_images_path %>
+   </div>
+  <% end %>
+  <hr class="border">
 </div>

@@ -38,7 +38,7 @@
          </div>
          <% if review.user == current_user %>
            <div class="review-delete">
-            <%= link_to "削除", sauna_facility_review_path(review.id,@sauna_facility.id), method: :delete, class: "btn btn-sm  btn-danger" %></br>
+            <%= link_to "削除", sauna_facility_review_path(@sauna_facility.id, review.id), method: :delete, class: "btn btn-sm  btn-danger" %></br>
            </div>
           <% end %>
          <%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
