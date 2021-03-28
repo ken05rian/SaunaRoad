@@ -1,3 +1,9 @@
+<% if flash[:success] %>
+  <div class="alert alert-success">
+   <%= flash[:success]%>
+  </div>
+<% end %>
+
 <div class="show-sauna-main">
    <div class="container">
      <h4 class="show-sauna-name"><%= @sauna_facility.name %></h4>

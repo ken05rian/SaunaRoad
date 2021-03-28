@@ -1,3 +1,5 @@
+
+<% if user_signed_in? %>
 <% @user ||= current_user %>
 <div class="stats">
   <a href="<%= following_user_path(@user) %>">
@@ -13,3 +15,21 @@
     フォロワー
   </a>
 </div>
+
+<% else %>
+<% @user ||= current_user %>
+<div class="stats">
+
+    <strong id="following" class="stat">
+      <%= @follow_users.count %>
+    </strong>
+    フォロー
+
+
+    <strong id="followers" class="stat">
+      <%= @follower_users.count %>
+    </strong>
+    フォロワー
+
+</div>
+<% end %>

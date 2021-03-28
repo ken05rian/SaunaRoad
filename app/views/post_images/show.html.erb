@@ -1,3 +1,8 @@
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+     <%= flash[:notice]%>
+    </div>
+   <% end %>
  <div class="container show-post-image-footer">
    <div class ="show-post-image">
      <h4 class="title">サウナ飯</h4>
@@ -6,9 +11,9 @@
      </div>
    </div>
    <div class="row">
-     <div class="col-md-5">
+     <div class="col-lg-6 col-md-12 col-sm-12">
        <div class="post-image">
-         <%= attachment_image_tag @post_image, :image, format: 'jpeg', size: "300x300" %>
+         <%= attachment_image_tag @post_image, :image, format: 'jpeg', size: "450x350" %>
        </div>
        <div class="show-post-image-user">
          <%= attachment_image_tag @post_image.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "70x70", class: "icon" %>
@@ -32,10 +37,13 @@
             <% end %>
           </div>
          <% end %>
+         <div class="show-post-image-time">
+          <%= @post_image.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+         </div>
        </div>
-       </div>
+      </div>
      </div>
-     <div class="col-md-7">
+     <div class="col-lg-6">
       <div class="visit-sauna">
        訪れた施設：<%= link_to @post_image.sauna_facility.name, sauna_facility_path(@post_image.sauna_facility) %>
        </div>
@@ -57,12 +65,14 @@
           <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         <% end %>
        </div>
-      <div class="new-comment">
-         <%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
-           <%= f.text_area :comment, placeholder: "コメント", rows: "3", cols: "50" %></br>
-           <%= f.submit "送信する" %>
-         <% end %>
-      </div>
+      <% if user_signed_in? %>
+       <div class="new-comment">
+          <%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
+            <%= f.text_area :comment, placeholder: "コメント", rows: "3", cols: "50" %></br>
+            <%= f.submit "送信する", style: "background-color: #FFFF88;", class: "btn" %>
+          <% end %>
+       </div>
+      <% end %>
      </div>
   </div>
 </div>

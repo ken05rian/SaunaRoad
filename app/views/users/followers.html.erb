@@ -19,7 +19,7 @@
           　　<%=link_to follower_user.name,user_path(follower_user.id) %></td>
           <td width="500"><%= follower_user.introduction %></td>
           <td width="80" style="text-align: center;" ><%= follower_user.post_images.count %></td>
-          <td><%#= render "relationships/follow_button", follow_user: follow_user, class: "follow-button" %></td>
+          <td><%= render "relationships/follow_button", user: follower_user, class: "follow-button" %></td>
         </tr>
         <% end %>
 

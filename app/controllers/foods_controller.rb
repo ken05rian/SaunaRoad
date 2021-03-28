@@ -4,15 +4,8 @@ class FoodsController < ApplicationController
     @reviews = @sauna_facility.reviews
     review_average = @sauna_facility.reviews.average('score')
     if !review_average.nil?
-    @review_average =  if review_average > review_average.floor + 0.6
-                         review_average.floor + 1
-                       elsif review_average < review_average.floor + 0.4
-                         review_average.floor
-                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
-                         review_average.floor + 0.5
-                       else
-                         review_average
-                       end
+    @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
+    @post_images = @sauna_facility.post_images.page(params[:page]).per(8)
     end
   end
 

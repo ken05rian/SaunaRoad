@@ -4,25 +4,21 @@ class ReviewsController < ApplicationController
 
   def index
     @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
-    @reviews = Review.all
+    @reviews = Review.where(sauna_facility_id: params[:sauna_facility_id] )
     review_average = @sauna_facility.reviews.average('score')
     if !review_average.nil?
-    @review_average =  if review_average > review_average.floor + 0.6
-                         review_average.floor + 1
-                       elsif review_average < review_average.floor + 0.4
-                         review_average.floor
-                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
-                         review_average.floor + 0.5
-                       else
-                         review_average
-                       end
+    @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
     end
   end
 
   def new
     @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
+    @reviews = @sauna_facility.reviews
     @review = Review.new
-    @reviews = Review.all
+    review_average = @sauna_facility.reviews.average('score')
+    if !review_average.nil?
+     @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
+    end
   end
 
   def create
@@ -30,9 +26,21 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.sauna_facility_id = params[:sauna_facility_id]
     if @review.save
+      flash[:success] = "口コミを投稿しました"
       redirect_to sauna_facility_reviews_path(params[:sauna_facility_id])
     else
+      flash.now[:alert] = "投稿に失敗しました"
       render :new
+    end
+  end
+
+
+  def destroy
+    @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
+    @review =
+    if @review.destroy
+      flash[:success] = "口コミを削除しました"
+      redirect_to sauna_facility_reviews_path(@sauna_facility)
     end
   end
 

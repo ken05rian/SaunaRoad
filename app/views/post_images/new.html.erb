@@ -1,14 +1,11 @@
-<% if @post_image.errors.any? %>
- <div class="alert alert-danger">
-  <% @post_image.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
- </div>
-<% end %>
-
-<h4 class="title-center">サウナ飯投稿</h4>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+   <%= flash[:alert]%>
+  </div>
+<% end %>>
 
 <div class="container">
+ <h4 class="title-center">サウナ飯投稿</h4>
   <%= form_with model: @post_image, local:true do |f| %>
  <div class="row justify-content-center">
   <div class="col-md-7">
@@ -23,7 +20,7 @@
     </tr>
     <tr>
       <th><%= f.label :説明 %></th>
-      <td><%= f.text_area :caption, rows: "10", cols: "40" %></td>
+      <td><%= f.text_area :caption, rows: "6", cols: "40" %></td>
     </tr>
    </table>
 

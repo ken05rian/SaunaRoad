@@ -6,4 +6,12 @@ class SaunaFacility < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :post_images, dependent: :destroy
 
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
 end

@@ -1,11 +1,12 @@
-<div class="container">
- <div class="post-image-list">
-  <h4 class="title">サウナ飯一覧</h4>
-   <% if flash[:success] %>
+<% if flash[:success] %>
     <div class="alert alert-success">
      <%= flash[:success]%>
     </div>
    <% end %>
+
+<div class="container">
+ <div class="post-image-list">
+  <h4 class="title">サウナ飯一覧</h4>
   <div class="new-post-image-button">
    <%= link_to "投稿する", new_post_image_path, class: "btn btn-primary" %>
   </div>
@@ -19,7 +20,7 @@
       <div class="post-image-information">
        <div class="post-image">
         <%= link_to post_image_path(post_image.id) do %>
-        <%= attachment_image_tag post_image, :image, format: 'jpeg',size: "300x250" %>
+         <%= attachment_image_tag post_image, :image, format: 'jpeg',size: "300x250" %>
         <% end %>
        </div>
        <div class="post-iamge-text">
@@ -59,6 +60,9 @@
           </div>
          </div>
         </div>
+       </div>
+       <div class="post-image-time">
+        <%= post_image.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
        </div>
       </div>
     </div>

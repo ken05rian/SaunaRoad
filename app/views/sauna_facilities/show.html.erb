@@ -4,26 +4,42 @@
         <%= attachment_image_tag @sauna_facility, :image, format: 'jpeg', fallback: "no_image.png", size: "550x350" %>
       </div>
       <hr class="border">
-       <h5 class="show-sauna-introduction-title">施設紹介
+       <h5 class="show-sauna-title">施設紹介
        </h5>
        <div class="show-sauna-introduction">
         <%= simple_format(@sauna_facility.introduction) %>
        </div>
       <hr class="border">
-      <div class="show-post-image">
-        <h5 class="sauna-show-title-post-image">投稿写真</h5>
+    </div>
+    <div class="container">
+       <h5 class="show-sauna-title">投稿写真</h5>
+       <div class="row">
+        <% unless @post_images.empty? %>
          <% @post_images.each do |post_image| %>
-         <div class="sauna-show-post-image">
-          <%= attachment_image_tag post_image, :image, format: 'jpeg', size: "100x100" %>
-         </div>
-         <% end %>
-　　　</div>
-      <hr class="border">
+           <div class="col-lg-4 col-sm-12 col-md-6">
+             <div class="sauna-show-post-image">
+              <%= link_to post_image_path(post_image.id) do %>
+               <%= attachment_image_tag post_image, :image, format: 'jpeg', size: "300x250" %>
+              <% end %>
+             </div>
+           </div>
+          <% end %>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+          <div class="food-continued">
+            <%=link_to "続きを見る>>", sauna_facility_foods_path(@sauna_facility.id) %>
+          </div>
+        <% end %>
+       <hr class="border">
+       </div>
+      </div>
+    </div>
 
-
+    <div class="container">
       <div class="main-review">
-        <h5 class="title-review">口コミ</h5>
-        <% unless !@reviews.nil? then %>
+        <h5 class="show-sauna-title">口コミ</h5>
+        <% unless @reviews.empty? %>
          <% review = @reviews.last %>
           <div class="show-review-user">
            <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50", class: "icon"  %>
@@ -51,7 +67,7 @@
 
       <hr class="border">
       <div class="sauna-information">
-        <h5 class="title-sauna-information">施設情報</h5>
+        <h5 class="show-sauna-title">施設情報</h5>
         <table class="sauna-information-table">
           <tr>
            <th width="100" height="50">施設名</th>

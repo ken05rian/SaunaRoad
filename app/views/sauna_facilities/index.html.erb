@@ -1,7 +1,23 @@
 <div class="container">
- <h4 class="title-sauna-list">サウナ施設一覧(全<%= @sauna_facilities.count %>件）</h4>
+ <h4 class="title-sauna-list">サウナ施設一覧</h4>
+ <h6><%= @sauna_start_count %>〜<%= @sauna_end_count %>件を表示/全<%= @sauna_facilities_total %>件
 </div>
 <% @sauna_facilities.each do |sauna_facility| %>
+         <script>
+          $(function(){
+          $('#star-score-<%= sauna_facility.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          half: true,
+          readOnly: true,
+          score: <%= sauna_facility.reviews.average('score').to_f.floor(2) %>,
+          });
+          });
+         </script>
+
  <div class="container">
    <div class="sauna-main">
     <div class="row">
@@ -25,7 +41,7 @@
          </div>
          <div class="review-list">
           <span id="star-score-<%= sauna_facility.id %>"></span>
-         <%= sauna_facility.review_average %>
+         <%= sauna_facility.reviews.average('score').to_f.floor(2) %>
          <div class="review-mark">
           <%= link_to(sauna_facility_reviews_path(sauna_facility.id))  do %>
            <i class="fas fa-comment-dots"><%= sauna_facility.reviews.count %></i>
@@ -41,18 +57,3 @@
 <div class="sauna-paginate">
  <%= paginate @sauna_facilities %>
 </div>
-
-         <script>
-          $(function(){
-          $('#star-score-<%= @sauna_facility.id %>').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          scoreName: 'review[score]',
-          half: true,
-          readOnly: true,
-          score: <%= @review_average %>,
-          });
-          });
-         </script>

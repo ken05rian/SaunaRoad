@@ -13,14 +13,14 @@ class PostImagesController < ApplicationController
       flash[:success] = "写真を投稿しました"
       redirect_to post_images_path
     else
-      flash[:alert] = "投稿に失敗しました"
+      flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
 
   end
 
   def index
-    @post_images = PostImage.all.page(params[:page]).per(8)
+    @post_images = PostImage.all.order(created_at: "DESC").page(params[:page]).per(8)
   end
 
   def show
@@ -29,6 +29,11 @@ class PostImagesController < ApplicationController
   end
 
   def destroy
+    @post_image = PostImage.find(params[:id])
+    if @post_image.destroy
+      flash[:notice] = "投稿を削除しました"
+      redirect_to post_image_path(@post_image)
+    end
   end
 
  private

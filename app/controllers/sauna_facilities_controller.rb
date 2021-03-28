@@ -6,24 +6,25 @@ class SaunaFacilitiesController < ApplicationController
   end
 
   def index
-    @sauna_facilities = SaunaFacility.all.page(params[:page]).per(5)
+    sauna_list = SaunaFacility.all
+    sauna_facilities = sauna_list.search(params[:search])
+    @sauna_facilities_total = sauna_facilities.count
+    @sauna_facilities = sauna_facilities.page(params[:page]).per(5)
+    if @sauna_facilities.size > 5
+      @sauna_start_count = @sauna_facilities.page(params[:page]).size + 5 * (@sauna_facilities.page(params[:page]).current_page - 1)
+    else
+      @sauna_start_count = 1
+    end
+    @sauna_facilities.size > 5 ? @sauna_end_count = 5 : @sauna_end_count = @sauna_facilities.size
   end
 
   def show
     @sauna_facility = SaunaFacility.find(params[:id])
-    @post_images = @sauna_facility.post_images
+    @post_images = @sauna_facility.post_images.page(params[:page]).per(3)
     @reviews = @sauna_facility.reviews
     review_average = @reviews.average('score')
     if !review_average.nil?
-    @review_average =  if review_average > review_average.floor + 0.6
-                         review_average.floor + 1
-                       elsif review_average < review_average.floor + 0.4
-                         review_average.floor
-                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
-                         review_average.floor + 0.5
-                       else
-                         review_average
-                       end
+      @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
     end
   end
 
@@ -55,15 +56,7 @@ class SaunaFacilitiesController < ApplicationController
     @reviews = @sauna_facility.reviews
     review_average = @sauna_facility.reviews.average('score')
     if !review_average.nil?
-    @review_average =  if review_average > review_average.floor + 0.6
-                         review_average.floor + 1
-                       elsif review_average < review_average.floor + 0.4
-                         review_average.floor
-                       elsif (review_average.floor + 0.4 >= review_average) || ( review_average <= review_average.floor + 0.6)
-                         review_average.floor + 0.5
-                       else
-                         review_average
-                       end
+    @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
     end
   end
 

@@ -79,6 +79,7 @@
 
 .show-post-image-user{
   display: flex;
+  padding-top: 20px;
 }
 
 .show-post-user-name {
@@ -88,8 +89,8 @@
 
 .show-favorite-count{
   padding-top: 20px;
-  padding-left: 30px;
-  margin-right: 20px;
+  padding-left: 20px;
+  margin-right: 10px;
 }
 
 .show-favorite-mark{
@@ -107,6 +108,12 @@
 
 .my-comment {
   display: flex;
+}
+
+.show-post-image-time {
+  color: gray;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 .comment-delete {
