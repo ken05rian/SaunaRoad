@@ -30,6 +30,7 @@ class ReviewsController < ApplicationController
       redirect_to sauna_facility_reviews_path(params[:sauna_facility_id])
     else
       flash.now[:alert] = "投稿に失敗しました"
+      @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
       render :new
     end
   end

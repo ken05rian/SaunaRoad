@@ -10,11 +10,13 @@
       <div class="review-list">
         <span id="star-score-<%= @sauna_facility.id %>"></span>
          <%= @review_average %>
-         <div class="review-mark">
-          <%= link_to(sauna_facility_reviews_path(@sauna_facility.id))  do %>
-           <i class="fas fa-comment-dots"><%= @reviews.count %></i>
+          <% if @reviews.present? %>
+           <div class="review-mark">
+            <%= link_to(sauna_facility_reviews_path(@sauna_facility.id))  do %>
+             <i class="fas fa-comment-dots"><%= @reviews.count %></i>
+            <% end %>
+           </div>
           <% end %>
-         </div>
       </div>
       <nav class="nav-list">
         <ul class="link-list">

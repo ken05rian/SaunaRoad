@@ -26,12 +26,51 @@
       <hr class="border">
     </div>
   </div>
-  <h4 class="show-sauna-title">今日のサウナ飯</h4>
+  <h4 class="main-title">サウナランキング</h4>
+  <div class="row">
+   <% @sauna_facilities.each do |sauna_facility| %>
+         <script>
+          $(function(){
+          $('#star-score-<%= sauna_facility.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          half: true,
+          readOnly: true,
+          score: <%= sauna_facility.reviews.average('score').to_f.floor(2) %>,
+          });
+          });
+         </script>
+   <div class="col-lg-4 col-sm-12 col-md-6">
+    <div class="sauna-ranking">u
+     <div class="sauna-image">
+           <%= attachment_image_tag sauna_facility, :image, format: 'jpeg', fallback: "no_image.png", size: "300x250" %>
+     </div>
+     <div class="sauna-name">
+      <%= link_to sauna_facility_path(sauna_facility.id) do %>
+       <%= sauna_facility.name %>
+      <% end %>
+     </div>
+     <div class="review-list">
+       <span id="star-score-<%= sauna_facility.id %>"></span>
+        <%= sauna_facility.reviews.average('score').to_f.floor(2) %>
+     </div>
+    </div>
+   </div>
+   <% end %>
+  </div>
+   <div class="food-continued">
+    <%=link_to "続きを見る>>", sauna_facilities_path %>
+   </div>
+  <hr class="border">
+  <h4 class="main-title">今日のサウナ飯</h4>
   <div class="row">
   <% if @post_images.count == 0 %>
     <h5 class="no-post-image">今日の新着投稿はありません</h5>
   <% else %>
-    <% @post_images.each do |post_image| %>
+   <% @post_images.each do |post_image| %>
     <div class="col-lg-4 col-sm-12 col-md-6">
       <div class="post-image-information">
        <div class="post-image">
