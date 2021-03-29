@@ -13,8 +13,10 @@
     </div>
     <div class="container">
        <h5 class="show-sauna-title">投稿写真</h5>
-       <div class="row">
-        <% unless @post_images.empty? %>
+        <% if @post_images.empty? %>
+         <h5 class="no-post-image">投稿写真はありません</h5>
+        <% else %>
+        <div class="row">
          <% @post_images.each do |post_image| %>
            <div class="col-lg-4 col-sm-12 col-md-6">
              <div class="sauna-show-post-image">
@@ -39,7 +41,9 @@
     <div class="container">
       <div class="main-review">
         <h5 class="show-sauna-title">口コミ</h5>
-        <% unless @reviews.empty? %>
+        <% if @reviews.empty? %>
+        <h5 class="no-post-image">口コミはありません</h5>
+        <% else %>
          <% review = @reviews.last %>
           <div class="show-review-user">
            <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', fallback: "no_image.png", size: "50x50", class: "icon"  %>
