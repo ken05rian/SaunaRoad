@@ -1,5 +1,5 @@
 class SaunaFacilitiesController < ApplicationController
-  before_action :admin?, only:[ :new, :create, :edit, :update, :destroy]
+  # before_action :admin?, only:[ :new, :create, :edit, :update, :destroy]
 
   def new
     @sauna_facility = SaunaFacility.new
@@ -64,11 +64,11 @@ class SaunaFacilitiesController < ApplicationController
 
   private
 
- def admin?
-   if !current_user.admin
-     redirect_to root_path
-   end
- end
+# def admin?
+#   if !current_user.admin
+#     redirect_to root_path
+#   end
+# end
 
  def sauna_facility_params
     params.require(:sauna_facility).permit(:image, :name, :address, :introduction, :telephone_number, :regular_holiday, :access, :business_hour, :latitude, :longitude)
