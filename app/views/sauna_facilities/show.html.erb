@@ -52,7 +52,7 @@
           <div class="relative-review-score">
            <span id="star-score-<%= review.id %>"></span>
 
-           <%= review.score %></br>
+           <%= review.score %><br/>
 
            <h5 class="review-title">
             <%= review.title %>
@@ -157,5 +157,7 @@
            </script>
 
            <script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBZ2Z4I9TEPKnzG5zpfRwTmSLe6o7cZvoI&callback=initMap">
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["API_KEY"]%>">
            </script>
+
+

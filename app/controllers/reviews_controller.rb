@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
     else
       flash.now[:alert] = "投稿に失敗しました"
       @sauna_facility = SaunaFacility.find(params[:sauna_facility_id])
+      @review_average = @sauna_facility.reviews.average('score').to_f.floor(2)
       render :new
     end
   end

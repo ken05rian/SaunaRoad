@@ -1,11 +1,11 @@
 <% if @user.errors.any? %>
  <div class="alert alert-danger">
-  <%= @user.errors.count %>件のエラーが発生しました</br>
+  <%= @user.errors.count %>件のエラーが発生しました<br/>
   <% @user.errors.full_messages.each do |message| %>
-    <%= message %></br>
+    <%= message %><br/>
   <% end %>
  <% end %>
- 
+
 </div>
 <div class="container sign-up-footer">
   <h4 class="title-center">新規登録</h4>
@@ -14,12 +14,12 @@
    <div class="col-md-4">
 
      <div class="field">
-        <%= f.label :ユーザー名 %><br />
+        <%= f.label :ユーザー名 %><br/>
         <%= f.text_field :name, autofocus: true, class: "form-control" %>
      </div>
 
      <div class="field">
-        <%= f.label :メールアドレス %><br />
+        <%= f.label :メールアドレス %><br/>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
      </div>
 
